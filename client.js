@@ -6,9 +6,6 @@ const util = require('util')
 const EOL = require('os').EOL
 const colors = require('colors')// eslint-disable-line
 
-const users = require('./users.json')
-
-
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -42,6 +39,15 @@ const chatCommands = {
     if (connected) {
       sendLogin()
     }
+  },
+  register: (login, password) => {
+    credentials = {
+      login,
+      password
+    }
+    connection.emit('register', {
+      login, password
+    })
   }
 }
 
@@ -62,13 +68,22 @@ connection
     writeLine(`${message.from}: ${message.body}`)
   })
   .on('login', result => {
-    console.log('client result: ', result)
     if (result) {
       rl.setPrompt(`${credentials.login} > `)
       writeLine(`Successfully logged in as "${credentials.login}"!`.green)
       credentials.isLoggedIn = true
     } else {
       writeLine(`Wrong login or password`.red)
+    }
+  })
+  .on('register', result => {
+    console.log('register result:', result)
+    if (result) {
+      rl.setPrompt(`${credentials.login} > `)
+      writeLine(`Successfully registered in as "${credentials.login}"!`.green)
+      sendLogin()
+    } else {
+      writeLine(`Problem while registration.`.red)
     }
   })
 

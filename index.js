@@ -3,13 +3,13 @@ const userPasswords = require('./users.json')
 const yaml = require('js-yaml')
 const fs = require('fs')
 const ChatServer = require('./lib/ChatServer')
-const Auth = require('./lib/Auth')
+const Auth = require('./lib/LevelAuth')
 const socketio = require('socket.io')
 
 class App {
   init () {
-    const auth = new Auth(userPasswords)
-    const config = yaml.safeLoad(fs.readFileSync('./config/env.yaml', 'utf8'));
+    const config = yaml.safeLoad(fs.readFileSync('./config/env.yaml', 'utf8'))
+    const auth = new Auth(config.dbPath)
     const io = new socketio(config.socketPort)
     const server = new ChatServer ({ io, config, auth })
     server.init()
