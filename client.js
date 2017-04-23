@@ -47,7 +47,7 @@ connection
   .on('connect', () => {
     connected = true
     writeLine(`Connected to server: ${SERVER_ADDRESS}`.yellow)
-    if (credentials) {
+    if (connected && credentials.login) {
       sendLogin()
     }
   })
@@ -60,6 +60,7 @@ connection
   })
   .on('login', result => {
     if (result) {
+      rl.setPrompt(`${credentials.login} > `)
       writeLine(`Successfully logged in as "${credentials.login}"!`.green)
       credentials.isLoggedIn = true
     } else {
