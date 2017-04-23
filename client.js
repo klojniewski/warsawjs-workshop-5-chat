@@ -60,6 +60,12 @@ connection
       sendLogin()
     }
   })
+  .on('userEnter', username => {
+    writeLine(`${username} entered the chat.`.yellow)
+  })
+  .on('userLeft', username => {
+    writeLine(`${username} left the chat.`.blue)
+  })
   .on('disconnect', () => {
     connected = false
     writeLine(`Disconnected from the server.`.yellow)
