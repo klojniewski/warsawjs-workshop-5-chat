@@ -4,11 +4,14 @@ const fs = require('fs')
 const ChatServer = require('./lib/ChatServer')
 const socketio = require('socket.io')
 
-try {
-  const config = yaml.safeLoad(fs.readFileSync('./config/env.yaml', 'utf8'));
-  const io = new socketio(config.socketPort)
-  const server = new ChatServer ({ io, config })
-  server.init()
-} catch (e) {
-  console.log(e);
+class App {
+  init () {
+    const config = yaml.safeLoad(fs.readFileSync('./config/env.yaml', 'utf8'));
+    const io = new socketio(config.socketPort)
+    const server = new ChatServer ({ io, config })
+    server.init()
+  }
 }
+
+const chatApp = new App()
+chatApp.init()
