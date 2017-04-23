@@ -83,7 +83,6 @@ connection
     }
   })
   .on('register', result => {
-    console.log('register result:', result)
     if (result) {
       rl.setPrompt(`${credentials.login} > `)
       writeLine(`Successfully registered in as "${credentials.login}"!`.green)
