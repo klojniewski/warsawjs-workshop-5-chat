@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "client": "node client.js",
+    "server": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/klojniewski/warsawjs-workshop-5-chat/issues"
   },
-  "homepage": "https://github.com/klojniewski/warsawjs-workshop-5-chat#readme"
+  "homepage": "https://github.com/klojniewski/warsawjs-workshop-5-chat#readme",
+  "dependencies": {
+    "socket.io": "^1.7.3"
+  }
 }
