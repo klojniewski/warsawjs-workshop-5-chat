@@ -1,0 +1,24 @@
+{
+  "name": "warsawjs-workshop-5-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klojniewski/warsawjs-workshop-5-chat.git"
+  },
+  "keywords": [
+    "warsawjs",
+    "chat",
+    "nodejs"
+  ],
+  "author": "Chris Lojniewski <chris@pagepro.pl> (http://pagepro.pl)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/klojniewski/warsawjs-workshop-5-chat/issues"
+  },
+  "homepage": "https://github.com/klojniewski/warsawjs-workshop-5-chat#readme"
+}
