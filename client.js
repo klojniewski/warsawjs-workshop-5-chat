@@ -17,18 +17,31 @@ const writeLine = function (line, ...args) {
   rl.prompt(true)
 }
 
+// fake authorization
+connection.emit('login', {
+  login: `chris-${Date.now()}`,
+  pass: 'koko12'
+})
+
+// subscribe to events
 connection
-  .on('connect', () => {
-    console.log(`Client connected to: ${SERVER_ADDRESS}`)
+  .on('message', message => {
+    writeLine(`${message.from}: ${message.body}`)
   })
-  .on('message', ({ body }) => {
-    writeLine(`Server says: ${body}`)
+  .on('login', result => {
+    if (result) {
+      writeLine(`Successfully logged in!`)
+    } else {
+      writeLine(`Wrong login or password`)
+    }
   })
 
 rl.setPrompt('> ')
 rl.prompt()
 
 rl.on('line', body => {
-  connection.emit('message', { body })
+  connection.emit('message', body)
   rl.prompt()
 })
+
+
