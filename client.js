@@ -1,4 +1,4 @@
-const config = require('./config.json');
+const config = require('./config/env.json')
 const SERVER_ADDRESS = `http://${config.address}:${config.port}`
 const connection = require('socket.io-client')(SERVER_ADDRESS)
 const readline = require('readline')
