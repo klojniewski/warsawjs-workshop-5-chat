@@ -13,3 +13,13 @@
     login: String,
     password: String
 }
+
+## Commands
+
+/login username password
+
+# API
+
+Authenticator {
+    validate (login, password) : Promise<boolean>;
+}

@@ -6,6 +6,9 @@ const util = require('util')
 const EOL = require('os').EOL
 const colors = require('colors')// eslint-disable-line
 
+const users = require('./users.json')
+
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -59,6 +62,7 @@ connection
     writeLine(`${message.from}: ${message.body}`)
   })
   .on('login', result => {
+    console.log('client result: ', result)
     if (result) {
       rl.setPrompt(`${credentials.login} > `)
       writeLine(`Successfully logged in as "${credentials.login}"!`.green)
